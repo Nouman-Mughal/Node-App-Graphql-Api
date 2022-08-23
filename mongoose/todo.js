@@ -1,4 +1,5 @@
-import mongoose from 'mongoose';
+// import mongoose from 'mongoose';
+const mongoose=require('mongoose')
 
 var Schema = mongoose.Schema;
 
@@ -13,7 +14,8 @@ var toDoSchema = new Schema({
 // we need to create a model using it
 var ToDo = mongoose.model('ToDo', toDoSchema);
 
-export default ToDo
+// export default ToDo
+module.exports=ToDo
 
 // Select an item from TodoList collection
 // ToDo.find({item:"Gethyl"},(err,res)=>{

@@ -1,21 +1,14 @@
-import {
-  GraphQLObjectType,
-  GraphQLNonNull,
-  GraphQLSchema,
-  GraphQLString,
-  GraphQLList,
-  GraphQLInt,
-  GraphQLBoolean
-} from 'graphql/type';
-
-import ToDoMongo from '../../mongoose/todo'
+// import { GraphQLObjectType, GraphQLInt, GraphQLString, GraphQLBoolean, GraphQLSchema, GraphQLList, GraphQLNonNull } from 'graphql/type';
+const {GraphQLObjectType, GraphQLInt, GraphQLString, GraphQLBoolean, GraphQLSchema, GraphQLList, GraphQLNonNull }=require('graphql/type')
+// import ToDoMongo from '../../mongoose/todo'
+const ToDoMongo=require('../../mongoose/todo')
 
 /**
  * generate projection object for mongoose
  * @param  {Object} fieldASTs
  * @return {Project}
  */
-export function getProjection (fieldASTs) {
+exports.getProjection= function  (fieldASTs) {
   return fieldASTs.fieldNodes[0].selectionSet.selections.reduce((projections, selection) => {
     projections[selection.name.value] = true;
     return projections;
@@ -69,5 +62,5 @@ var schema = new GraphQLSchema({
   
 });
 
-export default schema;
+module.exports=schema;
 

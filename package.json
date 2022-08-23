@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Todo Express-MongoDB server",
   "main": "server.js",
+  "type":"commonjs",
   "scripts": {
     "dev": "nodemon server.js",
     "dev3": "babel-node  server.js"

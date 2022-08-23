@@ -1,14 +1,19 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
-import ToDo from './mongoose/todo'
-import schema from './graphql/Schema/Schema'
+const express =require('express')
+const mongoose=require('mongoose')
+// 
+const bodyParser=require('body-parser')
+// import ToDo from './mongoose/todo'
+const ToDo=require('./mongoose/todo')
+// import schema from './graphql/Schema/Schema'
+const schema=require('./graphql/Schema/Schema.js')
 const app = express();
-
-import {graphql} from 'graphql'
-import graphqlHTTP from 'express-graphql';
-
 app.use(bodyParser.urlencoded({extended:true}))
+
+// import {graphql} from 'graphql'
+const graphql=require('graphql')
+// import graphqlHTTP from 'express-graphql';
+const graphqlHTTP=require('express-graphql')
+
 
 mongoose.connect('mongodb://localhost:27017/local')
 
@@ -18,15 +23,15 @@ db.once('open', () => {
 	console.log( '+++Connected to mongoose')
 })
 
-app.listen(3000,()=> {console.log("+++Express Server is Running!!!")})
+app.listen(3009,()=> {console.log("+++Express Server is Running!!!")})
 
 app.get('/',(req,res)=>{
 	res.sendFile(__dirname + '/index.html')
 })
 
-app.use('/graphql', graphqlHTTP (req => ({
-	schema
-	//,graphiql:true
+app.use('/graphql', graphqlHTTP(req => ({
+	schema,
+	graphiql:true
 })))
 
 app.post('/quotes',(req,res)=>{
